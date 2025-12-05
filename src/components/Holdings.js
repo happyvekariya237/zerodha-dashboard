@@ -9,7 +9,7 @@ const Holdings = () => {
 
   useEffect(() => {
     axios
-      .get("https://zerodha-backend-lobs.onrender.com/allHoldings")
+      .get("https://zerodha-backend-lobs.onrender.com/allHolding")
       .then((res) => setAllHoldings(res.data))
       .catch((err) => {
         console.error("Failed to fetch holdings:", err);
