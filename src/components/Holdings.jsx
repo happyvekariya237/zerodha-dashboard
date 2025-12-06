@@ -8,15 +8,19 @@ const Holdings = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    axios
-      .get("https://zerodha-backend-lobs.onrender.com/allholdings")
-      .then((res) => setAllHoldings(res.data))
-      .catch((err) => {
-        console.error("Failed to fetch holdings:", err);
-        setError("Could not load holdings");
-      })
-      .finally(() => setLoading(false));
-  }, []);
+  axios
+    .get(`${import.meta.env.VITE_API_URL}/allHoldings`)
+    .then((res) => {
+      console.log(res.data); // check if this is an array
+      setAllHoldings(res.data);
+    })
+    .catch((err) => {
+      console.error("Failed to fetch holdings:", err);
+      setError("Could not load holdings");
+    })
+    .finally(() => setLoading(false));
+}, []);
+
 
   if (loading) return <p>Loading holdings...</p>;
   if (error) return <p>{error}</p>;
